@@ -1,7 +1,6 @@
-/*
 package com.leyou.listener;
 
-import com.jim.service.SearchService;
+import com.leyou.service.SearchService;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -16,13 +15,12 @@ public class GoodsListener {
     @Autowired
     private SearchService searchService;
 
-    */
 /**
      * 处理insert和update的消息
      *
      * @param id
-     * @throws Exception
-     *//*
+     * @throws Exception*/
+     
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "leyou.create.index.queue", durable = "true"),
@@ -39,12 +37,11 @@ public class GoodsListener {
         this.searchService.createIndex(id);
     }
 
-    */
 /**
      * 处理delete的消息
      *
-     * @param id
-     *//*
+     * @param id*/
+     
 
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "leyou.delete.index.queue", durable = "true"),
@@ -61,4 +58,3 @@ public class GoodsListener {
         this.searchService.deleteIndex(id);
     }
 }
-*/

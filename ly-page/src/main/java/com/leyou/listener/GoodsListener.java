@@ -1,7 +1,6 @@
-/*
 package com.leyou.listener;
 
-import com.jim.service.GoodsService;
+import com.leyou.service.GoodsService;
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -46,4 +45,3 @@ public class GoodsListener {
         goodsService.deleteHtml(id);
     }
 }
-*/

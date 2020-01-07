@@ -9,6 +9,7 @@ import com.leyou.mapper.*;
 import com.leyou.pojo.*;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,8 +44,8 @@ public class GoodsService {
     @Autowired
     private StockMapper stockMapper;
 
-    /*@Autowired
-    private AmqpTemplate amqpTemplate;*/
+    @Autowired
+    private AmqpTemplate amqpTemplate;
     /**
      * 分页查询
      *
@@ -155,7 +156,7 @@ public class GoodsService {
         saveSkuAndStock(spu);
 
         //发送消息
-        // sendMessage(spu.getId(),"insert");
+        sendMessage(spu.getId(),"insert");
 
         /*//新增sku
         List<Sku> skus = spu.getSkus();
@@ -264,7 +265,7 @@ public class GoodsService {
         //更新 sku和stock
         saveSkuAndStock(spu);
 
-        // sendMessage(spu.getId(),"update");
+        sendMessage(spu.getId(),"update");
     }
 
     /**
@@ -322,12 +323,12 @@ public class GoodsService {
      * @param id
      * @param type
      */
-    /*private void sendMessage(Long id,String type){
+    private void sendMessage(Long id,String type){
         try {
             amqpTemplate.convertAndSend("item."+type,id);
         }catch (Exception e){
             log.error("{}商品消息发送异常，商品id：{}",type,id,e);
         }
 
-    }*/
+    }
 }
